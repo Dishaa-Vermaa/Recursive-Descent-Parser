@@ -10,8 +10,8 @@ The app is built as a Flask web service with a simple browser frontend. User inp
 flowchart LR
     Browser["Browser / Frontend"] -->|POST /parse| Flask["Flask Backend (app.py)"]
     Flask -->|render_template| Templates["templates/index.html / result.html"]
-    Flask -->|tokenize(expression)| Tokenizer["Tokenizer (parser_code/parser.py)"]
-    Tokenizer -->|tokens| Parser["Recursive Descent Parser"]
+    Flask -->|tokenize| Tokenizer["Tokenizer (parser_code/parser.py)"]
+    Tokenizer -->|token stream| Parser["Recursive Descent Parser"]
     Parser -->|AST| Evaluator["AST Evaluator"]
     Evaluator -->|result| Flask
     Parser -->|AST| TreeGenerator["Graphviz Tree Generator"]
