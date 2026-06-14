@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result - Recursive Descent Parser</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Parsing Result</h1>
+
+    {% if error %}
+      <p class="error">⚠️ {{ error }}</p>
+    {% else %}
+      <p><strong>Expression:</strong> {{ expression }}</p>
+      <p><strong>Tokens:</strong></p>
+      <ul style="list-style:none;">
+        {% for token in tokens %}
+          <li>{{ token }}</li>
+        {% endfor %}
+      </ul>
+      <p><strong>Result:</strong> {{ result }}</p>
+
+      <h3>Expression Tree:</h3>
+      <img src="/image" alt="Expression Tree">
+    {% endif %}
+
+    <br><br>
+    <a href="/" style="color:#2b2f7a; text-decoration:none;">← Try another expression</a>
+  </div>
+</body>
+</html>

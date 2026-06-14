@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recursive Descent Parser</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Recursive Descent Parser</h1>
+    <form action="/parse" method="POST">
+      <label for="expression">Enter an arithmetic expression:</label><br>
+      <input type="text" id="expression" name="expression" placeholder="e.g. 10 + 2 * (3 + 4)" required>
+      <br>
+      <button type="submit">Parse & Evaluate</button>
+    </form>
+  </div>
+</body>
+</html>
