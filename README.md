@@ -2,6 +2,30 @@
 
 This project contains a small Flask backend that parses and evaluates arithmetic expressions and generates a Graphviz expression tree image.
 
+## Architecture Overview
+
+The app is built as a Flask web service with a simple browser frontend. User input flows from the HTML form to the backend, where the expression is tokenized, parsed into an AST, evaluated, and rendered as a Graphviz expression tree.
+
+```mermaid
+flowchart LR
+    Browser["Browser / Frontend"] -->|POST /parse| Flask["Flask Backend (app.py)"]
+    Flask -->|render_template| Templates["templates/index.html / result.html"]
+    Flask -->|tokenize(expression)| Tokenizer["Tokenizer (parser_code/parser.py)"]
+    Tokenizer -->|tokens| Parser["Recursive Descent Parser"]
+    Parser -->|AST| Evaluator["AST Evaluator"]
+    Evaluator -->|result| Flask
+    Parser -->|AST| TreeGenerator["Graphviz Tree Generator"]
+    TreeGenerator -->|PNG image| Flask
+    Flask -->|render result page| Browser
+```
+
+### Key components
+
+- `app.py` — Flask routes and HTTP request handling
+- `templates/index.html` — input form for expressions
+- `templates/result.html` — result page with evaluation output and tree image
+- `parser_code/parser.py` — tokenizer, parser, AST evaluator, and Graphviz tree generator
+
 Two ways to run the project:
 
 1) Recommended — Run the backend (Flask serves the frontend)
